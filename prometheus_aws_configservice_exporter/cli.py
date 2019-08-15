@@ -7,7 +7,7 @@ from typing import List
 from pythonjsonlogger import jsonlogger
 from prometheus_client import start_http_server, Gauge
 from prometheus_client.core import REGISTRY
-from .collector import ConfigMetricsCollector
+from .collector import ConfigServiceMetricsCollector
 
 
 def parseArguments(argv: List[str]):
@@ -44,7 +44,7 @@ def main(args):
 
     # Register our custom collector
     logger.info("Collecting initial metrics")
-    REGISTRY.register(ConfigMetricsCollector(args.region))
+    REGISTRY.register(ConfigServiceMetricsCollector(args.region))
 
     # Set the up metric value, which will be steady to 1 for the entire app lifecycle
     upMetric = Gauge(
