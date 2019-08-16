@@ -18,9 +18,13 @@
    ```
 3. Tag the image and push it to Docker Hub
    ```
-   docker tag prometheus-aws-configservice-exporter airwalkconsulting/prometheus-aws-configservice-exporter:latest && \
+   docker tag prometheus-aws-configservice-exporter airwalkconsulting/prometheus-aws-configservice-exporter:latest && 
    docker push airwalkconsulting/prometheus-aws-configservice-exporter:latest
-
-   docker tag prometheus-aws-configservice-exporter airwalkconsulting/prometheus-aws-configservice-exporter:REPLACE-VERSION && \
-   docker push airwalkconsulting/prometheus-aws-configservice-exporter:REPLACE-VERSION
+   ```
+   ```
+   VERSION=__PUT_VERSION_HERE__
+   ```
+   ```
+   docker tag prometheus-aws-configservice-exporter airwalkconsulting/prometheus-aws-configservice-exporter:$VERSION && 
+   docker push airwalkconsulting/prometheus-aws-configservice-exporter:$VERSION
    ```
