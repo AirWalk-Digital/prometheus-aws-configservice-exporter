@@ -16,6 +16,7 @@ The exporter exports the following metrics:
 
 | Metric name                         | Type     | Labels                   | Description                                                  |
 | ----------------------------------- | -------- | ------------------------ |------------------------------------------------------------- |
+| `aws_config_exporter_up`            | gauge    | _None_                   | Always `1`: can be used to check if the exporter is running  |
 | `aws_config_current_resources`      | guage    | `region`,`resource_type` | The total number of resources recorded by AWS Config         |
 | `aws_config_compliant_resources`    | guage    | `region`,`resource_type` | The number of compliant resources recorded by AWS Config     |
 | `aws_config_noncompliant_resources` | guage    | `region`,`resource_type` | The number of non-compliant resources recorded by AWS Config |
@@ -76,7 +77,7 @@ Run the development environment:
 docker-compose build dev && docker-compose run --rm dev
 ```
 
-Run tests in the dev environment:
+Run tests in the dev environment (Warning: See TODO.md):
 
 ```
 python3 -m unittest
