@@ -15,7 +15,7 @@ def parseArguments(argv: List[str]):
     parser = argparse.ArgumentParser()
     parser.add_argument("--region", metavar="REGION", required=True, nargs="+", help="AWS Config region (can specify multiple space separated regions)")
     parser.add_argument("--exporter-host", required=False, default="127.0.0.1", help="The host at which the Prometheus exporter should listen to")
-    parser.add_argument("--exporter-port", required=False, default="9200", type=int, help="The port at which the Prometheus exporter should listen to")
+    parser.add_argument("--exporter-port", required=False, default="9100", type=int, help="The port at which the Prometheus exporter should listen to")
     parser.add_argument("--log-level", help="Minimum log level. Accepted values are: DEBUG, INFO, WARNING, ERROR, CRITICAL", default="INFO")
 
     return parser.parse_args(argv)
