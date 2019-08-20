@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.0.5 (2019-08-20)
+- Remove rate limit
+
 ### 1.0.4 (2019-08-19)
 - Port change (to 9100)
 

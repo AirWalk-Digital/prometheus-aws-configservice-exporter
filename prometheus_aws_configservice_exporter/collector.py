@@ -74,7 +74,7 @@ class ConfigServiceMetricsCollector():
             noncompliantCount = 0
             resp = client.get_compliance_summary_by_resource_type(ResourceTypes=[resource['resourceType']])
             while resp:
-                time.sleep(1)  # Rate limit
+                #time.sleep(1)  # Rate limit
                 compliantCount += (resp['ComplianceSummariesByResourceType'][0]['ComplianceSummary']['CompliantResourceCount']['CappedCount'])
                 noncompliantCount += (resp['ComplianceSummariesByResourceType'][0]['ComplianceSummary']['NonCompliantResourceCount']['CappedCount'])
                 resp = client.get_compliance_summary_by_resource_type(ResourceTypes=[resource['resourceType']], NextToken=resp['NextToken']) if 'NextToken' in resp else None
