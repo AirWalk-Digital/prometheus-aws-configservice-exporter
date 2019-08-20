@@ -7,8 +7,9 @@ from prometheus_client.core import GaugeMetricFamily, CounterMetricFamily
 
 
 class ConfigServiceMetricsCollector():
-    def __init__(self, regions: List[str]):
+    def __init__(self, regions: List[str], throttle: float):
         self.regions = regions
+        self.throttle = throttle
         self.scrapeErrors = {region: 0 for region in regions}
 
     def collect(self):
@@ -32,6 +33,8 @@ class ConfigServiceMetricsCollector():
             "aws_config_scrape_errors_total",
             "The total number of scrape errors",
             labels=["region"])
+ 
+        logging.getLogger().info("Throttling %s seconds between each API request", self.throttle)
 
         # Customize the boto client config
         botoConfig = botocore.client.Config(connect_timeout=2, read_timeout=10, retries={"max_attempts": 2})
@@ -74,7 +77,7 @@ class ConfigServiceMetricsCollector():
             noncompliantCount = 0
             resp = client.get_compliance_summary_by_resource_type(ResourceTypes=[resource['resourceType']])
             while resp:
-                #time.sleep(1)  # Rate limit
+                time.sleep(self.throttle)  # Rate limit
                 compliantCount += (resp['ComplianceSummariesByResourceType'][0]['ComplianceSummary']['CompliantResourceCount']['CappedCount'])
                 noncompliantCount += (resp['ComplianceSummariesByResourceType'][0]['ComplianceSummary']['NonCompliantResourceCount']['CappedCount'])
                 resp = client.get_compliance_summary_by_resource_type(ResourceTypes=[resource['resourceType']], NextToken=resp['NextToken']) if 'NextToken' in resp else None

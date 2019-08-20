@@ -43,6 +43,7 @@ The cli supports the following arguments:
 | Argument                       | Required | Description |
 | ------------------------------ | -------- | ----------- |
 | `--region REGION [REGION ...]` | yes      | AWS Config region (can specify multiple space separated regions) |
+| `--throttle SECONDS`           |          | The number of seconds to wait between AWS Config API requests. Float, eg `0.5`. Defaults to `1.0` |
 | `--exporter-host`              |          | The host at which the Prometheus exporter should listen to. Defaults to `127.0.0.1` |
 | `--exporter-port`              |          | The port at which the Prometheus exporter should listen to. Defaults to `9100` |
 | `--log-level LOG_LEVEL`        |          | Minimum log level. Accepted values are: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`. Defaults to `INFO` |

@@ -16,6 +16,7 @@ def parseArguments(argv: List[str]):
     parser.add_argument("--region", metavar="REGION", required=True, nargs="+", help="AWS Config region (can specify multiple space separated regions)")
     parser.add_argument("--exporter-host", required=False, default="127.0.0.1", help="The host at which the Prometheus exporter should listen to")
     parser.add_argument("--exporter-port", required=False, default="9100", type=int, help="The port at which the Prometheus exporter should listen to")
+    parser.add_argument("--throttle", required=False, default="1.0", type=float, help="The number of seconds to wait between each AWS Config API request")
     parser.add_argument("--log-level", help="Minimum log level. Accepted values are: DEBUG, INFO, WARNING, ERROR, CRITICAL", default="INFO")
 
     return parser.parse_args(argv)
@@ -44,7 +45,7 @@ def main(args):
 
     # Register our custom collector
     logger.info("Collecting initial metrics")
-    REGISTRY.register(ConfigServiceMetricsCollector(args.region))
+    REGISTRY.register(ConfigServiceMetricsCollector(args.region, args.throttle))
 
     # Set the up metric value, which will be steady to 1 for the entire app lifecycle
     upMetric = Gauge(
