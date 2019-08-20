@@ -2,7 +2,7 @@ import sys
 from setuptools import setup
 
 # Version
-version = "1.0.5"
+version = "1.0.6"
 
 # Requires Python 3
 if sys.version_info.major < 3:
