@@ -34,8 +34,6 @@ class ConfigServiceMetricsCollector():
             "The total number of scrape errors",
             labels=["region"])
  
-        logging.getLogger().info("Throttling %s seconds between each API request", self.throttle)
-
         # Customize the boto client config
         botoConfig = botocore.client.Config(connect_timeout=2, read_timeout=10, retries={"max_attempts": 2})
 
