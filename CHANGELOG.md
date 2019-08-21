@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.0.7 (2019-08-21)
+- Logging bugfix
+
 ### 1.0.6 (2019-08-20)
 - Add configurable API request throttle
 

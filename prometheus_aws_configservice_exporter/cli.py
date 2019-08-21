@@ -56,6 +56,7 @@ def main(args):
 
     # Start server
     start_http_server(args.exporter_port, args.exporter_host)
+    logger.info("Throttling %s seconds between each API request", args.throttle)
     logger.info("Exporter listening on {host}:{port}".format(host=args.exporter_host, port=args.exporter_port))
 
     while not shutdown:
